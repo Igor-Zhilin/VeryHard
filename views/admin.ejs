@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ЖЕЛЕЗЯКА.com</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="/styles/style.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Roboto:ital,wght@1,300&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <%- include("./header.ejs") %>
+        <main>
+            <section>
+                <div class="row text-center mt-5 mb-5">
+                    <h1>ADMIN PANEL</h1>
+                </div>
+                <div class="container-fluid">
+                    <div class="row row-cols-1">
+                        <div class="col">
+                            <h2 class="mt-1 text-center">
+                                Создание карточки товара
+                            </h2>
+                            <div
+                                class="container-fluid d-flex justify-content-center mt-5"
+                            >
+                                <div
+                                    class="row row-cols-1 d-flex justify-content-between p-4 col-8"
+                                >
+                                    <form
+                                        action="/admin/card_create"
+                                        method="post"
+                                        id="myForm"
+                                    >
+                                        <div
+                                            class="col-5 mt-3 d-flex justify-content-between"
+                                        >
+                                            <label>Наименование</label>
+                                            <input
+                                                required
+                                                type="text"
+                                                placeholder="Введите наименование"
+                                                value=""
+                                                name="name"
+                                            />
+                                        </div>
+                                        <div
+                                            class="col-5 mt-3 d-flex justify-content-between"
+                                        >
+                                            <label for="category"
+                                                >Категория</label
+                                            >
+
+                                            <select
+                                                name="category"
+                                                id="category-select"
+                                            >
+                                                <option value="CPU">
+                                                    Процессор
+                                                </option>
+                                                <option value="MB">
+                                                    Материнские платы
+                                                </option>
+                                                <option value="GPU">
+                                                    Видеокарты
+                                                </option>
+                                                <option value="Other">
+                                                    Другое
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div
+                                            class="col-5 mt-3 d-flex justify-content-between"
+                                        >
+                                            <label>Фотография</label>
+                                            <input
+                                                required
+                                                type=""
+                                                placeholder="Введите название фото"
+                                                value=""
+                                                name="photo"
+                                            />
+                                        </div>
+                                        <div
+                                            class="col-5 mt-3 d-flex justify-content-between"
+                                        >
+                                            <label class="me-4">Описание</label>
+                                            <textarea
+                                                placeholder="Введите текст"
+                                                name="description"
+                                                style="
+                                                    height: 100px;
+                                                    width: 80%;
+                                                "
+                                            ></textarea>
+                                        </div>
+                                        <div
+                                            class="col-5 mt-3 d-flex justify-content-between"
+                                        >
+                                            <label>Цена</label>
+                                            <input
+                                                required
+                                                type=""
+                                                placeholder="Введите цену"
+                                                value=""
+                                                name="price"
+                                            />
+                                        </div>
+                                        <div
+                                            class="col-8 mt-4 d-flex justify-content-between"
+                                        >
+                                            <button
+                                                type="submit"
+                                                id="post-btn"
+                                                class="btn btn-dark"
+                                            >
+                                                Создать
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <h2 class="mt-5 text-center">
+                                Удаление карточки товара
+                            </h2>
+                            <div
+                                class="container-fluid d-flex justify-content-center mt-5"
+                            >
+                                <div
+                                    class="row row-cols-1 d-flex justify-content-between p-4 col-8"
+                                >
+                                    <form
+                                        action="/admin/card_delete"
+                                        method="post"
+                                        id="myForm"
+                                    >
+                                        <div
+                                            class="col-5 mt-3 d-flex justify-content-between"
+                                        >
+                                            <label for="category"
+                                                >Выберите карточку:</label
+                                            >
+
+                                            <select
+                                                name="id"
+                                                id="category-select"
+                                                class="mx-3"
+                                            >
+                                                <% for (let i = 0; i <
+                                                data.length; i++) { %>
+                                                <option
+                                                    value=" <%= data[i].id %>"
+                                                >
+                                                    id = <%= data[i].id %>, name
+                                                    = <%= data[i].name %>
+                                                </option>
+                                                <%} %>
+                                            </select>
+                                        </div>
+                                        <div
+                                            class="col-8 mt-4 d-flex justify-content-between"
+                                        >
+                                            <button
+                                                type="submit"
+                                                id="post-btn"
+                                                class="btn btn-danger"
+                                            >
+                                                Удалить
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <h2 class="mt-5 mb-5 text-center">
+                                Список резервов
+                            </h2>
+                            <% if(dataCart.length > 0) { %>
+                            <div class="row">
+                                <div class="col-2"></div>
+                                <div class="col-8">
+                                    <div
+                                        class="row text-center mb-2 align-items-center"
+                                    >
+                                        <div class="col-2">
+                                            <h2>ID резерва</h2>
+                                        </div>
+                                        <div class="col-2">
+                                            <h2>ID карточки</h2>
+                                        </div>
+                                        <div class="col-2">
+                                            <h2>Контакты пользователя</h2>
+                                        </div>
+                                        <div class="col-2">
+                                            <h2>Наименование</h2>
+                                        </div>
+                                        <div class="col-2"><h2>Цена</h2></div>
+                                    </div>
+                                    <% for (let i = 0; i < dataCart.length;
+                                    i++){ %>
+                                    <div
+                                        class="row text-center align-items-center p-2 m-2 border border-2 border-secondary-subtle rounded"
+                                    >
+                                        <div class="col-2">
+                                            <h6><%=dataCart[i].id%></h6>
+                                        </div>
+                                        <div class="col-2">
+                                            <h6><%=dataCart[i].id_item%></h6>
+                                        </div>
+                                        <div class="col-2">
+                                            <h6><%=dataCart[i].email_user%></h6>
+                                        </div>
+                                        <div class="col-2">
+                                            <h6><%=dataCart[i].name%></h6>
+                                        </div>
+                                        <div class="col-2">
+                                            <h6><%=dataCart[i].price%></h6>
+                                        </div>
+                                        <div class="col-2">
+                                            <form
+                                                action="/admin/card_delete_reserv"
+                                                method="post"
+                                                id="myForm"
+                                            >
+                                                <input
+                                                    type="text"
+                                                    name="id"
+                                                    value="<%=dataCart[i].id_item%>"
+                                                    class="d-none"
+                                                />
+                                                <button
+                                                    type="submit"
+                                                    id="post-btn"
+                                                    class="btn btn-secondary"
+                                                >
+                                                    Удалить
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <% }%>
+                                </div>
+                                <div class="col-2"></div>
+                            </div>
+                            <% }else {%>
+                            <div class="row text-center mt-5 mb-5">
+                                <h2>У пользователей нет резервов</h2>
+                            </div>
+                            <% }%>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="container-fluid mt-4 bg-dark p-3">
+            <div class="row text-center">
+                <div class="col">
+                    <a href="/">Главная</a>
+                </div>
+                <div class="col"><a href="/catalog">Каталог</a></div>
+                <div class="col"><a href="/where">Где нас найти?</a></div>
+            </div>
+        </footer>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>

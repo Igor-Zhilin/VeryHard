@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">ЖЕЛЕЗЯКА.com</a>
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarColor02"
+            aria-controls="navbarColor02"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/catalog">Каталог </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/where">Где нас найти?</a>
+                </li>
+            </ul>
+            <% if (usercheck == 'guest') {%>
+
+            <div class="me-2">
+                <a href="/auth">
+                    <button type="button" class="btn btn-outline-light">
+                        Войти
+                    </button></a
+                >
+            </div>
+            <% }else {%>
+            <div class="me-2">
+                <a href="/profile">
+                    <button type="button" class="btn btn-outline-light">
+                        Профиль
+                    </button></a
+                >
+            </div>
+            <% }%>
+        </div>
+    </div>
+</nav>
